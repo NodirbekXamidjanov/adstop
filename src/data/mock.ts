@@ -136,7 +136,7 @@ export const mockOffers: Offer[] = [
     title: 'Organic Skincare Promo',
     brand: 'NaturGlow',
     brandType: 'Beauty',
-    emoji: '🌿',
+    emoji: '/image.png',
     budget: '$500',
     platform: 'Instagram',
     description:
@@ -155,7 +155,7 @@ export const mockOffers: Offer[] = [
     title: 'Noise Cancelling Headphones',
     brand: 'SonicTech',
     brandType: 'Electronics',
-    emoji: '🎧',
+    emoji: '/headphone.png',
     budget: '$1,200',
     platform: 'YouTube',
     description:
@@ -174,7 +174,7 @@ export const mockOffers: Offer[] = [
     title: 'Lumina Smart Lamp',
     brand: 'Lumina Inc',
     brandType: 'Home & Tech',
-    emoji: '💡',
+    emoji: '/tech.png',
     budget: '$450',
     platform: 'TikTok',
     description:
@@ -190,14 +190,14 @@ export const mockOffers: Offer[] = [
 ]
 
 export const mockAdvertiserPayments: Payment[] = [
-  { id: '#1023', campaign: 'Lumina Smart Lamp',    counterpart: 'Zara Karimova',  amount: '$500',   date: '5 Feb',  status: 'paid'    },
-  { id: '#1024', campaign: 'FitPro Watch',         counterpart: 'Marcus Chen',    amount: '$1,200', date: '8 Feb',  status: 'paid'    },
-  { id: '#1025', campaign: 'FitPro Watch',         counterpart: 'Jessica Lee',    amount: '$800',   date: '12 Feb', status: 'pending' },
-  { id: '#1026', campaign: 'EcoBottle Launch',     counterpart: 'Alex Mirzayev', amount: '$300',   date: '18 Feb', status: 'pending' },
+  { id: '#1023', campaign: 'Lumina Smart Lamp', counterpart: 'Zara Karimova', amount: '$500', date: '5 Feb', status: 'paid' },
+  { id: '#1024', campaign: 'FitPro Watch', counterpart: 'Marcus Chen', amount: '$1,200', date: '8 Feb', status: 'paid' },
+  { id: '#1025', campaign: 'FitPro Watch', counterpart: 'Jessica Lee', amount: '$800', date: '12 Feb', status: 'pending' },
+  { id: '#1026', campaign: 'EcoBottle Launch', counterpart: 'Alex Mirzayev', amount: '$300', date: '18 Feb', status: 'pending' },
 ]
 
 export const mockBloggerPayments: Payment[] = [
-  { id: '#2011', campaign: 'Organic Skincare Promo',    counterpart: 'NaturGlow',  amount: '$500',   date: '5 Feb',  status: 'paid'    },
-  { id: '#2012', campaign: 'Noise Cancelling Promo',    counterpart: 'SonicTech', amount: '$1,200', date: '12 Feb', status: 'paid'    },
-  { id: '#2013', campaign: 'Lumina Smart Lamp',         counterpart: 'Lumina Inc', amount: '$450',   date: '18 Feb', status: 'pending' },
+  { id: '#2011', campaign: 'Organic Skincare Promo', counterpart: 'NaturGlow', amount: '$500', date: '5 Feb', status: 'paid' },
+  { id: '#2012', campaign: 'Noise Cancelling Promo', counterpart: 'SonicTech', amount: '$1,200', date: '12 Feb', status: 'paid' },
+  { id: '#2013', campaign: 'Lumina Smart Lamp', counterpart: 'Lumina Inc', amount: '$450', date: '18 Feb', status: 'pending' },
 ]

@@ -1,137 +1,4 @@
-// // Advertiser Dashboard sahifasi
-
-// import { useState } from 'react'
-// import StatCard from '../../components/ui/StatCard'
-// import Avatar from '../../components/ui/Avatar'
-// import Toast from '../../components/ui/Toast'
-// import { useToast } from '../../hooks/useToast'
-// import { mockBloggers } from '../../data/mock'
-// import type { Blogger } from '../../types'
-// import CreateCampaignModal from '../advertiser/CreateCampaignModal'
-
-// export default function AdvertiserDashboardPage() {
-//   const { message, showToast, hideToast } = useToast()
-//   const [showModal, setShowModal] = useState(false)
-//   const [invitedIds, setInvitedIds] = useState<number[]>([])
-
-//   function handleInvite(blogger: Blogger) {
-//     setInvitedIds(prev => [...prev, blogger.id])
-//     showToast(`${blogger.name} ga taklif yuborildi!`)
-//   }
-
-//   return (
-//     <div>
-//       {message && <Toast message={message} onClose={hideToast} />}
-
-//       {/* Page header */}
-//       <div className="flex items-start justify-between mb-7">
-//         <div>
-//           <h2 className="text-xl font-bold">Dashboard</h2>
-//           <p className="text-sm text-zinc-500 mt-0.5">Welcome back, Alex 👋</p>
-//         </div>
-//         <button className="btn btn-primary btn-md" onClick={() => setShowModal(true)}>
-//           ＋ Create Campaign
-//         </button>
-//       </div>
-
-//       {/* Stats */}
-//       <div className="grid grid-cols-3 gap-4 mb-7">
-//         <StatCard label="Active Campaigns" value="12"      sub="↑ 2 this month"           icon="📋" />
-//         <StatCard label="Total Spend"      value="$45,200" sub="↑ 18% vs last month"       icon="💰" />
-//         <StatCard label="Total Reach"      value="2.4M"    sub="Across all campaigns"       icon="👁" />
-//       </div>
-
-//       {/* AI Recommendations */}
-//       <div className="flex items-center justify-between mb-4">
-//         <h3 className="font-semibold">⭐ AI Recommendations</h3>
-//         <div className="flex gap-2">
-//           <button className="btn btn-secondary btn-sm">Filter</button>
-//           <button className="btn btn-secondary btn-sm">Sort by Match</button>
-//         </div>
-//       </div>
-
-//       <div className="grid grid-cols-3 gap-4">
-//         {mockBloggers.map(blogger => (
-//           <BloggerCard
-//             key={blogger.id}
-//             blogger={blogger}
-//             invited={invitedIds.includes(blogger.id)}
-//             onInvite={() => handleInvite(blogger)}
-//           />
-//         ))}
-//       </div>
-
-//       {/* Create campaign modal */}
-//       {showModal && (
-//         <CreateCampaignModal
-//           onClose={() => setShowModal(false)}
-//           onCreated={(name) => {
-//             showToast(`"${name}" kampaniyasi yaratildi! 🎉`)
-//             setShowModal(false)
-//           }}
-//         />
-//       )}
-//     </div>
-//   )
-// }
-
-// // ─── Blogger kartochkasi ───
-// interface BloggerCardProps {
-//   blogger: Blogger
-//   invited: boolean
-//   onInvite: () => void
-// }
-
-// function BloggerCard({ blogger, invited, onInvite }: BloggerCardProps) {
-//   return (
-//     <div className="card hover:border-zinc-300 hover:-translate-y-0.5 hover:shadow-sm transition-all cursor-pointer">
-//       {/* Top */}
-//       <div className="flex items-center gap-2.5 mb-4">
-//         <Avatar initials={blogger.initials} size="md" />
-//         <div>
-//           <div className="font-semibold text-sm">{blogger.name}</div>
-//           <div className="text-xs text-zinc-400">{blogger.handle}</div>
-//         </div>
-//       </div>
-
-//       {/* Stats */}
-//       <div className="flex gap-4 mb-3">
-//         <div>
-//           <div className="font-bold text-sm">{blogger.followers}</div>
-//           <div className="text-[11px] text-zinc-400">Followers</div>
-//         </div>
-//         <div>
-//           <div className="font-bold text-sm">{blogger.engagement}</div>
-//           <div className="text-[11px] text-zinc-400">Engagement</div>
-//         </div>
-//         <div>
-//           <div className="font-bold text-sm">{blogger.platform}</div>
-//           <div className="text-[11px] text-zinc-400">Platform</div>
-//         </div>
-//       </div>
-
-//       {/* Match + niche */}
-//       <div className="flex items-center justify-between mb-3">
-//         <span className="text-xs font-semibold text-green-600 bg-green-50 px-2.5 py-1 rounded-full">
-//           ✦ {blogger.matchScore}% match
-//         </span>
-//         <span className="badge badge-gray">{blogger.niche}</span>
-//       </div>
-
-//       {/* Invite button */}
-//       <button
-//         className={`btn btn-sm w-full ${invited ? 'btn-success' : 'btn-primary'}`}
-//         onClick={onInvite}
-//         disabled={invited}
-//       >
-//         {invited ? '✓ Invited' : 'Invite →'}
-//       </button>
-//     </div>
-//   )
-// }
-
-
-// Blogger Dashboard sahifasi
+// Blogger Dashboard sahifasi — yangi UI, barcha funksionallik saqlanган
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -141,6 +8,7 @@ import { useToast } from '../../hooks/useToast'
 import { mockOffers } from '../../data/mock'
 import type { Offer } from '../../types'
 import OfferCard from './OfferCard'
+import { ListFilter, SortDesc } from 'lucide-react'
 
 export default function BloggerDashboardPage() {
   const navigate = useNavigate()
@@ -158,50 +26,79 @@ export default function BloggerDashboardPage() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen bg-[#f7f7f7] dark:bg-[#191919]">
       {message && <Toast message={message} onClose={hideToast} />}
 
-      {/* Profile completion banner */}
-      <div className="bg-zinc-900 text-white rounded-2xl p-5 flex items-center gap-5 mb-7">
-        <div className="text-3xl font-bold">85%</div>
-        <div className="flex-1">
-          <div className="font-semibold text-sm mb-1.5">Profile Complete</div>
-          <div className="text-xs text-white/60 mb-2">Profil to'liq to'ldirilsa ko'proq takliflar keladi</div>
-          <div className="h-1 bg-white/20 rounded-full overflow-hidden">
-            <div className="h-full w-[85%] bg-white rounded-full" />
+      <div className="max-w-250 mx-auto pb-24">
+
+        {/* Page Heading & Welcome */}
+        <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-neutral-900 dark:text-white mb-2">
+              Good morning, Alex
+            </h2>
+            <p className="text-neutral-500 dark:text-neutral-400 text-lg">Here's what's happening today.</p>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="flex gap-4 md:gap-8">
+            <div className="flex flex-col">
+              <span className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">85%</span>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium">Profile Complete</span>
+            </div>
+            <div className="w-px bg-neutral-200 dark:bg-neutral-700 h-12" />
+            <div className="flex flex-col">
+              <span className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">$12,450</span>
+              <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium">Total Earned</span>
+            </div>
+          </div>
+        </header>
+
+        {/* Stats row */}
+        {/* <div className="grid grid-cols-3 gap-4 mb-10">
+          <StatCard label="Incoming Offers" value={String(offers.length)} sub="Sizga kelgan takliflar" icon="📨" />
+          <StatCard label="Total Earned"    value="$12,450"               sub="↑ 24% o'tgan oyga"     icon="💰" />
+          <StatCard label="Active Deals"    value="2"                     sub="Jarayonda"               icon="🤝" />
+        </div> */}
+
+        {/* Section Header */}
+        <div className="flex items-center justify-between mb-8">
+          <h3 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">Incoming Offers</h3>
+          <div className="flex items-center gap-2">
+            <button
+              className="p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors"
+              title="Filter"
+            >
+              <span className="material-symbols-outlined"><ListFilter /></span>
+            </button>
+            <button
+              className="p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors"
+              title="Sort"
+            >
+              <span className="material-symbols-outlined"><SortDesc className='w-7.5 h-7.5' /></span>
+            </button>
+            <button
+              className="ml-2 h-9 px-4 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-sm font-semibold hover:opacity-90 transition-opacity"
+              onClick={() => navigate('/blogger/offers')}
+            >
+              Hammasini ko'rish →
+            </button>
           </div>
         </div>
-        <div className="text-right">
-          <div className="text-2xl font-bold">$12,450</div>
-          <div className="text-xs text-white/60 mt-0.5">Total Earned</div>
+
+        {/* Offers Feed */}
+        <div className="flex flex-col gap-8">
+          {offers.slice(0, 3).map(offer => (
+            <OfferCard
+              key={offer.id}
+              offer={offer}
+              onAccept={() => handleAccept(offer.id)}
+              onDecline={() => handleDecline(offer.id)}
+              onView={() => navigate(`/blogger/offers/${offer.id}`)}
+            />
+          ))}
         </div>
-      </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-7">
-        <StatCard label="Incoming Offers" value={String(offers.length)} sub="Sizga kelgan takliflar" icon="📨" />
-        <StatCard label="Total Earned"    value="$12,450"               sub="↑ 24% o'tgan oyga"     icon="💰" />
-        <StatCard label="Active Deals"    value="2"                     sub="Jarayonda"               icon="🤝" />
-      </div>
-
-      {/* Offers list */}
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold">Incoming Offers</h3>
-        <button className="btn btn-secondary btn-sm" onClick={() => navigate('/blogger/offers')}>
-          Hammasini ko'rish →
-        </button>
-      </div>
-
-      <div className="space-y-3">
-        {offers.slice(0, 3).map(offer => (
-          <OfferCard
-            key={offer.id}
-            offer={offer}
-            onAccept={() => handleAccept(offer.id)}
-            onDecline={() => handleDecline(offer.id)}
-            onView={() => navigate(`/blogger/offers/${offer.id}`)}
-          />
-        ))}
       </div>
     </div>
   )

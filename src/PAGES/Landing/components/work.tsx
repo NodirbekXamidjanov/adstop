@@ -2,7 +2,7 @@ import { Target, Sparkles, Rocket, ArrowRight } from "lucide-react";
 
 export function HowItWorksSection() {
   return (
-    <section className="py-24 bg-[#f5f5f7]">
+    <section id="work" className="py-24 bg-[#f5f5f7]">
       <div className="px-12">
         <div className="grid lg:grid-cols-[400px_1fr] gap-56 items-center">
           {/* Left side - Header */}

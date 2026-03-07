@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router";
 
 export function HeroSection() {
+  const navigate = useNavigate()
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden bg-gradient-to-br from-slate-49 via-white to-slate-150">
       {/* Animated background effect */}
@@ -45,6 +47,7 @@ export function HeroSection() {
         <Button 
           size="lg" 
           className="bg-black hover:bg-black/89 text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+          onClick={() => navigate("/register")}
         >
           I'm an Advertiser
           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -53,13 +56,14 @@ export function HeroSection() {
           size="lg" 
           variant="outline"
           className="border-2 border-black text-black hover:bg-black hover:text-white px-8 py-6 text-lg rounded-full transition-all duration-300"
+          onClick={() => navigate("/register")}
         >
           I'm an Influencer
         </Button>
       </div>
 
       {/* Influencer Cards */}
-      <div className="relative w-full max-w-auto grid grid-cols-2 md:grid-cols-4 gap-4 animate-slide-up"
+      <div id="hero" className="relative w-full max-w-auto grid grid-cols-2 md:grid-cols-4 gap-4 animate-slide-up"
            style={{ animationDelay: '0.6s' }}>
         {/* Card 1 - Beauty */}
         <div className="group relative aspect-[3/3.5] rounded-3xl overflow-hidden bg-gradient-to-br from-pink-100 to-rose-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">

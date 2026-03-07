@@ -3,19 +3,17 @@ export type Role = 'advertiser' | 'blogger'
 
 // Auth context uchun user tipi
 export interface User {
-  id: string
-  role: Role
-  firstName: string
-  lastName: string
-  email: string
-  // Advertiser uchun
+  role?: string
   companyName?: string
-  companyCategory?: string
-  // Blogger uchun
+  businessCategory?: string
+  companyWebsite?: string
+  country?: string
+  workEmail?: string
+  password?: string
   platform?: string
-  accountUrl?: string
-  followers?: number
-  username?: string
+  platformUrl?: string
+  contentCategory?: string
+  notificationEmail?: string
 }
 
 // Blogger (AI tavsiya / qidiruvda ko'rinadigan)

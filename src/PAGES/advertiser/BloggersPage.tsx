@@ -11,7 +11,7 @@ const PLATFORMS = ['All', 'Instagram', 'TikTok', 'YouTube']
 
 export default function BloggersPage() {
   const { message, showToast, hideToast } = useToast()
-  const [search,   setSearch]   = useState('')
+  const [search, setSearch] = useState('')
   const [platform, setPlatform] = useState('All')
   const [invitedIds, setInvitedIds] = useState<number[]>([])
 
@@ -44,7 +44,7 @@ export default function BloggersPage() {
       {/* Filter row */}
       <div className="flex gap-3 mb-6 flex-wrap">
         <input
-          className="input max-w-[260px]"
+          className="input max-w-65"
           placeholder="🔍 Ism, niche yoki handle..."
           value={search}
           onChange={e => setSearch(e.target.value)}

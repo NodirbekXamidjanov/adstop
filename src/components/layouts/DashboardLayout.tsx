@@ -11,11 +11,11 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ user, onLogout }: DashboardLayoutProps) {
   return (
-    <div className="flex min-h-screen bg-zinc-50">
+    <div className="flex min-h-screen bg-[#f7f7f7]">
       <Sidebar user={user} onLogout={onLogout} />
 
       {/* Main content — sidebar kengligiga qarab margin */}
-      <main className="ml-[230px] flex-1 p-8 max-w-[calc(100vw-230px)]">
+      <main className="ml-57.5 flex-1 p-8 max-w-[calc(100vw-230px)]">
         <Outlet />
       </main>
     </div>

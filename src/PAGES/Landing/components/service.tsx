@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router";
+
 export function ServiceSection() {
+  const navigate = useNavigate()
   return (
-    <section className="py-24 bg-white">
+    <section id="service" className="py-24 bg-white">
       {/* CENTERED CONTENT CONTAINER */}
       <div className="mx-auto max-w-7xl px-6">
 
@@ -18,7 +21,7 @@ export function ServiceSection() {
                 Stop wasting budget on mismapped audiences. Get precision targeting at scale.
               </p>
             </div>
-            <button className="bg-white text-slate-900 font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition w-fit mt-8">
+            <button onClick={() => navigate("/register")} className="bg-white text-slate-900 font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition w-fit mt-8">
               Start Campaign
             </button>
           </div>
@@ -34,7 +37,7 @@ export function ServiceSection() {
                 Connect with brands that align with your values. Transparent payouts, zero hassle.
               </p>
             </div>
-            <button className="bg-slate-900 text-white font-semibold px-8 py-3 rounded-full hover:bg-slate-800 transition w-fit mt-8">
+            <button onClick={() => navigate("/register")} className="bg-slate-900 text-white font-semibold px-8 py-3 rounded-full hover:bg-slate-800 transition w-fit mt-8">
               Join as Creator
             </button>
           </div>
@@ -48,7 +51,7 @@ export function ServiceSection() {
           <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
             Join thousands of brands and creators maximizing their potential with AdsTop.
           </p>
-          <button className="bg-slate-900 text-white font-semibold px-8 py-4 rounded-full hover:bg-slate-800 transition text-lg">
+          <button onClick={() => navigate("/register")} className="bg-slate-900 text-white font-semibold px-8 py-4 rounded-full hover:bg-slate-800 transition text-lg">
             Get Started for Free
           </button>
         </div>
