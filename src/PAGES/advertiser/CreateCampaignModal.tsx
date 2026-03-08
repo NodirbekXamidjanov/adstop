@@ -5,6 +5,7 @@
 
 import { useState } from 'react'
 import type { CreateCampaignForm } from '../../types'
+import { Clapperboard, Globe, Megaphone, ShoppingCart, Smartphone, Store } from 'lucide-react'
 
 interface Props {
   onClose: () => void
@@ -12,16 +13,16 @@ interface Props {
 }
 
 const PRODUCT_TYPES = [
-  { key: 'Website',        icon: '🌐', sub: 'Drive traffic to site'   },
-  { key: 'Mobile App',     icon: '📱', sub: 'Increase app installs'   },
-  { key: 'Social Profile', icon: '📣', sub: 'Grow your audience'      },
-  { key: 'Physical Store', icon: '🏪', sub: 'Foot traffic'            },
+  { key: 'Website', icon: <Globe />, sub: 'Drive traffic to site' },
+  { key: 'Mobile App', icon: <Smartphone />, sub: 'Increase app installs' },
+  { key: 'Social Profile', icon: <Megaphone />, sub: 'Grow your audience' },
+  { key: 'Physical Store', icon: <Store />, sub: 'Foot traffic' },
 ]
 
 const GOALS = [
-  { key: 'Brand Awareness',  icon: '📢' },
-  { key: 'Drive Sales',      icon: '🛒' },
-  { key: 'Content Creation', icon: '🎬' },
+  { key: 'Brand Awareness', icon: <Megaphone /> },
+  { key: 'Drive Sales', icon: <ShoppingCart /> },
+  { key: 'Content Creation', icon: <Clapperboard /> },
 ]
 
 const KEYWORDS = ['Fashion', 'Beauty', 'Tech', 'Food', 'Fitness', 'Lifestyle', 'Gaming', 'Travel']
@@ -76,13 +77,13 @@ export default function CreateCampaignModal({ onClose, onCreated }: Props) {
           <div>
             <h3 className="text-lg font-bold">
               {step === 0 ? 'What are you promoting?'
-               : step === 1 ? 'Set your budget'
-               : 'Goals & Targeting'}
+                : step === 1 ? 'Set your budget'
+                  : 'Goals & Targeting'}
             </h3>
             <p className="text-sm text-zinc-500 mt-0.5">
               {step === 0 ? "Let's start with the basics of your campaign."
-               : step === 1 ? 'Define how much you want to spend.'
-               : "We'll find the right creators for you."}
+                : step === 1 ? 'Define how much you want to spend.'
+                  : "We'll find the right creators for you."}
             </p>
           </div>
           <button
@@ -122,19 +123,37 @@ export default function CreateCampaignModal({ onClose, onCreated }: Props) {
                 onChange={e => upd('name', e.target.value)}
               />
             </div>
-
             <label className="label mb-3">Product Type</label>
             <div className="grid grid-cols-2 gap-3">
               {PRODUCT_TYPES.map(pt => (
                 <div
                   key={pt.key}
-                  className={`border-2 rounded-xl p-4 text-center cursor-pointer transition-all
-                    ${form.productType === pt.key ? 'border-zinc-900 bg-zinc-50' : 'border-zinc-200 hover:border-zinc-400'}`}
+                  className={`flex items-center gap-3 border-2 rounded-xl p-4 cursor-pointer transition-all relative
+                    ${form.productType === pt.key
+                      ? 'border-neutral-900 bg-neutral-50'
+                      : 'border-neutral-200 hover:border-neutral-400'
+                    }`}
                   onClick={() => upd('productType', pt.key)}
                 >
-                  <div className="text-2xl mb-2">{pt.icon}</div>
-                  <div className="text-sm font-semibold">{pt.key}</div>
-                  <div className="text-xs text-zinc-400 mt-1">{pt.sub}</div>
+                  {/* Icon */}
+                  <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center shrink-0 text-xl">
+                    {pt.icon}
+                  </div>
+
+                  {/* Text */}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-bold text-neutral-900">{pt.key}</div>
+                    <div className="text-xs text-neutral-400 mt-0.5">{pt.sub}</div>
+                  </div>
+
+                  {/* Check badge */}
+                  {form.productType === pt.key && (
+                    <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-neutral-900 flex items-center justify-center shrink-0">
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -197,12 +216,29 @@ export default function CreateCampaignModal({ onClose, onCreated }: Props) {
               {GOALS.map(g => (
                 <div
                   key={g.key}
-                  className={`border-2 rounded-xl p-4 text-center cursor-pointer transition-all
-                    ${form.goal === g.key ? 'border-zinc-900 bg-zinc-50' : 'border-zinc-200 hover:border-zinc-400'}`}
+                  className={`flex items-center gap-3 border-2 rounded-xl p-3 cursor-pointer transition-all relative
+                    ${form.goal === g.key
+                      ? 'border-neutral-900 bg-neutral-50'
+                      : 'border-neutral-200 hover:border-neutral-400'
+                    }`}
                   onClick={() => upd('goal', g.key)}
                 >
-                  <div className="text-2xl mb-2">{g.icon}</div>
-                  <div className="text-xs font-semibold leading-tight">{g.key}</div>
+                  {/* Icon */}
+                  <div className="w-9 h-9 rounded-full bg-neutral-100 flex items-center justify-center shrink-0 text-lg">
+                    {g.icon}
+                  </div>
+
+                  {/* Text */}
+                  <div className="text-xs font-bold text-neutral-900 leading-tight">{g.key}</div>
+
+                  {/* Check badge */}
+                  {form.goal === g.key && (
+                    <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-neutral-900 flex items-center justify-center">
+                      <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

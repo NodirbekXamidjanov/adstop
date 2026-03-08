@@ -20,7 +20,7 @@ export const Register: React.FC = () => {
         <>
             <div>
                 <div className="w-[90%] m-auto flex justify-between items-center">
-                    <div className="w-30">
+                    <div className="w-30 cursor-pointer" onClick={() => navigate("/")}>
                         <img src="/image.png" alt="" />
                     </div>
                     <div className="flex items-center">

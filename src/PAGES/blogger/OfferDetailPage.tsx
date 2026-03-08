@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { mockOffers } from '../../data/mock'
 import Toast from '../../components/ui/Toast'
 import { useToast } from '../../hooks/useToast'
-import { ArrowLeft, ArrowLeftCircle, ArrowRight, Building2, Calendar, Camera, CheckCircle2, CircleX, FileTextIcon, FolderOpen, PlayCircle, PlusCircle, Smartphone, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Building2, Calendar, Camera, CheckCircle2, FileTextIcon, FolderOpen, PlayCircle, PlusCircle, Smartphone, X } from 'lucide-react'
 
 export default function OfferDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -68,7 +68,7 @@ export default function OfferDetailPage() {
           <div className="lg:col-span-7 flex flex-col gap-6">
 
             {/* Hero image */}
-            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-white dark:bg-white/5 shadow-sm group flex items-center justify-center text-8xl select-none">
+            <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden bg-white dark:bg-white/5 shadow-sm group flex items-center justify-center text-8xl select-none">
               <span className="transition-transform duration-500 group-hover:scale-110 inline-block">
                 <img src={offer.emoji} alt="" />
               </span>
@@ -114,7 +114,7 @@ export default function OfferDetailPage() {
               <ul className="space-y-3">
                 {offer.requirements.map((req, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-green-500 text-lg mt-0.5 flex-shrink-0"><CheckCircle2 /></span>
+                    <span className="material-symbols-outlined text-green-500 text-lg mt-0.5 shrink-0"><CheckCircle2 /></span>
                     <span className="text-sm text-neutral-700 dark:text-neutral-300">{req}</span>
                   </li>
                 ))}
@@ -180,7 +180,7 @@ export default function OfferDetailPage() {
                     Decline
                   </button>
                   <button
-                    className="flex-[2] h-14 rounded-full bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-white/90 text-white dark:text-neutral-900 font-semibold text-base transition-all shadow-lg flex items-center justify-center gap-2 active:scale-[0.98]"
+                    className="flex-2 h-14 rounded-full bg-neutral-900 dark:bg-white hover:bg-neutral-800 dark:hover:bg-white/90 text-white dark:text-neutral-900 font-semibold text-base transition-all shadow-lg flex items-center justify-center gap-2 active:scale-[0.98]"
                     onClick={handleAccept}
                   >
                     Accept Offer
@@ -188,6 +188,7 @@ export default function OfferDetailPage() {
                   </button>
                 </div>
               ) : (
+                
                 <div className="text-center py-8 bg-white dark:bg-white/5 rounded-2xl border border-neutral-100 dark:border-white/5">
                   <div className="text-5xl mb-3">🎉</div>
                   <div className="font-semibold text-neutral-900 dark:text-white mb-1">Qabul qilindi!</div>

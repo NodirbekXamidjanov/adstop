@@ -15,12 +15,45 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { useNavigate } from "react-router"
+import { useState } from "react"
+import type { User } from "@/types"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const navigate = useNavigate()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault()
+    setError("")
+
+    const raw = localStorage.getItem("demoUser")
+    if (!raw) {
+      setError("User not found")
+      return
+    }
+
+    const user: User = JSON.parse(raw)
+
+    if ((user.notificationEmail == email || user.workEmail == email) && password == "root123") {
+      if (user.role === "advertiser") {
+        navigate("/advertiser")
+      } else if (user.role === "influencer") {
+        navigate("/blogger")
+      } else {
+        setError("Unknown role")
+      }
+    }
+
+    setError("Email or password is incorrect")
+    return
+
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -31,7 +64,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleLogin}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -39,27 +72,38 @@ export function LoginForm({
                   id="email"
                   type="email"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Field>
               <Field>
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </Field>
-              <a
-                href="#"
+
+              <a href="#"
                 className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
               >
                 Forgot your password?
               </a>
+              {error && (
+                <p className="text-sm text-red-500 text-center">{error}</p>
+              )}
               <Field>
                 <Button type="submit">Login</Button>
-                {/* <Button variant="outline" type="button">
-                  Login with Google
-                </Button> */}
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <Button variant={'link'} onClick={() => navigate("/register")}>Sign up</Button>
+                  Don&apos;t have an account?{" "}
+                  <Button variant={"link"} onClick={() => navigate("/register")}>
+                    Sign up
+                  </Button>
                 </FieldDescription>
               </Field>
             </FieldGroup>

@@ -58,7 +58,7 @@ export function LoginFormFinishSetup({
 
     updateRegisterData(mapped)
     completeRegister(mapped) // ✅ localStorage ga saqlaydi
-    navigate("/dashboard")
+    navigate("/blogger")
   }
 
   return (

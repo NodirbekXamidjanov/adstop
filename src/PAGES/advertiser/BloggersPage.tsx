@@ -88,43 +88,73 @@ export default function BloggersPage() {
 }
 
 function BloggerCard({ blogger, invited, onInvite }: { blogger: Blogger; invited: boolean; onInvite: () => void }) {
+  const isHighMatch = blogger.matchScore >= 90
+
   return (
-    <div className="card hover:border-zinc-300 hover:-translate-y-0.5 hover:shadow-sm transition-all cursor-pointer">
-      <div className="flex items-center gap-2.5 mb-4">
-        <Avatar initials={blogger.initials} size="md" />
-        <div>
-          <div className="font-semibold text-sm">{blogger.name}</div>
-          <div className="text-xs text-zinc-400">{blogger.handle}</div>
+    <article className="bg-white dark:bg-neutral-800 rounded-lg p-5 border border-neutral-200 dark:border-neutral-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col gap-4 group cursor-pointer">
+
+      {/* Top: Avatar + name + match badge */}
+      <div className="flex items-start justify-between">
+        <div className="flex items-center gap-3">
+          <div className="size-14 rounded-full bg-neutral-100 dark:bg-neutral-700 border border-neutral-100 dark:border-neutral-600 flex items-center justify-center shrink-0">
+            <Avatar initials={blogger.initials} size="md" />
+          </div>
+          <div>
+            <div className="font-bold text-neutral-900 dark:text-white leading-tight">{blogger.name}</div>
+            <div className="text-xs text-neutral-500 font-medium">{blogger.handle}</div>
+          </div>
+        </div>
+        <div className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full border shrink-0
+          ${isHighMatch
+            ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-green-100 dark:border-green-800'
+            : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-300 border-neutral-200 dark:border-neutral-600'
+          }`}
+        >
+          {blogger.matchScore}% Match
         </div>
       </div>
 
-      <div className="flex gap-4 mb-3">
-        <div>
-          <div className="font-bold text-sm">{blogger.followers}</div>
-          <div className="text-[11px] text-zinc-400">Followers</div>
-        </div>
-        <div>
-          <div className="font-bold text-sm">{blogger.engagement}</div>
-          <div className="text-[11px] text-zinc-400">Engagement</div>
-        </div>
-      </div>
-
-      <p className="text-xs text-zinc-500 leading-relaxed mb-3 line-clamp-2">{blogger.bio}</p>
-
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-xs font-semibold text-green-600 bg-green-50 px-2.5 py-1 rounded-full">
-          ✦ {blogger.matchScore}% match
+      {/* Niche + platform tags */}
+      <div className="flex flex-wrap gap-2">
+        <span className="px-3 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-xs rounded-full font-medium">
+          {blogger.niche}
         </span>
-        <span className="badge badge-gray">{blogger.niche}</span>
+        <span className="px-3 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-xs rounded-full font-medium">
+          {blogger.platform}
+        </span>
       </div>
 
-      <button
-        className={`btn btn-sm w-full ${invited ? 'btn-success' : 'btn-primary'}`}
-        onClick={onInvite}
-        disabled={invited}
-      >
-        {invited ? '✓ Invited' : 'Invite →'}
-      </button>
-    </div>
+      {/* Bio */}
+      <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed line-clamp-2">
+        {blogger.bio}
+      </p>
+
+      {/* Stats + invite */}
+      <div className="pt-4 border-t border-neutral-100 dark:border-neutral-700 flex items-center justify-between mt-auto">
+        <div className="flex flex-col">
+          <span className="text-xs text-neutral-400">Followers</span>
+          <span className="text-sm font-bold text-neutral-900 dark:text-white">{blogger.followers}</span>
+        </div>
+        <div className="w-px h-8 bg-neutral-100 dark:bg-neutral-700" />
+        <div className="flex flex-col">
+          <span className="text-xs text-neutral-400">Engagement</span>
+          <span className="text-sm font-bold text-neutral-900 dark:text-white">{blogger.engagement}</span>
+        </div>
+
+        {/* Invite button */}
+        <button
+          className={`h-8 rounded-full px-4 text-xs font-bold transition-all flex items-center gap-1.5
+            ${invited
+              ? 'bg-green-500 text-white cursor-default'
+              : 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 opacity-0 group-hover:opacity-100 hover:opacity-90 active:scale-95'
+            }`}
+          onClick={(e) => { e.stopPropagation(); onInvite() }}
+          disabled={invited}
+        >
+          {invited ? '✓ Invited' : 'Invite →'}
+        </button>
+      </div>
+
+    </article>
   )
 }

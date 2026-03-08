@@ -10,7 +10,7 @@ export const CreateAdvAccount: React.FC = () => {
 
 
             <div className="w-full m-auto px-5 flex justify-between items-center border-b">
-                <div className="w-30">
+                <div className="w-30 cursor-pointer" onClick={() => navigate("/")}>
                     <img src="/image.png" alt="" />
                 </div>
                 <p className="text-[#8d8d91] text-[14px] font-normal hidden md:block ">Advertiser Registration</p>

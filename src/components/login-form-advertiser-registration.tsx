@@ -62,7 +62,7 @@ export function LoginFormAdvRegistration({ className, ...props }: React.Componen
     updateRegisterData(mapped)
     completeRegister(mapped) // ✅ OZGARDI: mapped ni to'g'ridan to'g'ri beramiz
 
-    navigate("/dashboard")
+    navigate("/advertiser")
   }
 
   return (

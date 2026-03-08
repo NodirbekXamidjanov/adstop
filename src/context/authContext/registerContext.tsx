@@ -32,7 +32,7 @@ interface AuthContextType {
     user: User | null
     registerData: RegisterData
     updateRegisterData: (newData: Partial<RegisterData>) => void
-    completeRegister: (data?: Partial<RegisterData>) => void // ✅ OZGARDI: data parametr qoshildi
+    completeRegister: (data?: Partial<RegisterData>) => void
     logout: () => void
 }
 
@@ -46,7 +46,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     })
     const [registerData, setRegisterData] = useState<RegisterData>({})
 
-    // ✅ OLIB TASHLANDI: useEffect kerak emas, useState lazy init ishlatilmoqda
 
     const updateRegisterData = (newData: Partial<RegisterData>) => {
         setRegisterData(prev => ({
@@ -55,7 +54,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }))
     }
 
-    // ✅ OZGARDI: data parametr qabul qiladi, state yangilanishini kutmaydi
     const completeRegister = (data?: Partial<RegisterData>) => {
         const finalData = { ...registerData, ...data }
         localStorage.setItem("demoUser", JSON.stringify(finalData))

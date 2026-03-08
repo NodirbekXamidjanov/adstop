@@ -21,19 +21,20 @@ import BloggerOffersPage from './pages/blogger/OffersPage'
 import OfferDetailPage from './pages/blogger/OfferDetailPage'
 import BloggerPaymentsPage from './pages/blogger/PaymentsPage'
 import BloggerSettingsPage from './pages/blogger/SettingsPage'
-import { AuthProvider, useAuth } from './context/authContext/registerContext'
+import { useAuth } from './context/authContext/registerContext'
 import { Home } from './pages/Landing'
 import { CreateAdvAccount, CreateInfAccount, FinishSetupInfRegister, Login, Register } from './pages/auth'
 
 export default function App() {
+  
   const { user, logout } = useAuth()
 
-
   return (
-    <AuthProvider>
+
       <Routes>
+        <Route path="*" element={<Home />} />
+
         {/* ── AUTH ROUTES ── */}
-        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} ></Route>
 
         <Route path="/register" element={<Register />} />
@@ -62,7 +63,7 @@ export default function App() {
         <Route
           path="/blogger"
           element={
-            user?.role === 'blogger'
+            user?.role === 'influncer'
               ? <DashboardLayout user={user} onLogout={logout} />
               : <Navigate to="/login" replace />
           }
@@ -81,7 +82,7 @@ export default function App() {
             <Navigate
               to={
                 user
-                  ? user.role === 'blogger' ? '/blogger' : '/advertiser'
+                  ? user.role === 'influncer' ? '/blogger' : '/advertiser'
                   : '/login'
               }
               replace
@@ -89,6 +90,5 @@ export default function App() {
           }
         />
       </Routes>
-    </AuthProvider>
   )
 }

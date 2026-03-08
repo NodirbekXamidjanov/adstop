@@ -1,10 +1,12 @@
 import { LoginFormFinishSetup } from "@/components/finish-setup-login-form"
+import { useNavigate } from "react-router"
 
 export const FinishSetupInfRegister: React.FC = () => {
+    const navigate = useNavigate()
     return (
         <div className="flex flex-col items-center">
-            <div className="flex items-center justify-between w-full bg-white absolute border border-b top-0 px-[2%]">
-                <div className="w-30"> <img src="/image.png" alt="" /></div>
+            <div className="flex items-center justify-between w-full bg-white absolute border border-b top-0 px-[2%]" >
+                <div className="w-30" onClick={() => navigate("/")}> <img src="/image.png" alt="" /></div>
                 <a href="#" className="text-[#8d8d91] hover:underline text-[12px] font-normal">Need help?</a>
             </div>
             <div className="w-full max-w-sm mt-12" >

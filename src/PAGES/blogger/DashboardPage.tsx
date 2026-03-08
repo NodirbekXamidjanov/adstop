@@ -1,8 +1,5 @@
-// Blogger Dashboard sahifasi — yangi UI, barcha funksionallik saqlanган
-
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import StatCard from '../../components/ui/StatCard'
 import Toast from '../../components/ui/Toast'
 import { useToast } from '../../hooks/useToast'
 import { mockOffers } from '../../data/mock'
@@ -54,12 +51,6 @@ export default function BloggerDashboardPage() {
           </div>
         </header>
 
-        {/* Stats row */}
-        {/* <div className="grid grid-cols-3 gap-4 mb-10">
-          <StatCard label="Incoming Offers" value={String(offers.length)} sub="Sizga kelgan takliflar" icon="📨" />
-          <StatCard label="Total Earned"    value="$12,450"               sub="↑ 24% o'tgan oyga"     icon="💰" />
-          <StatCard label="Active Deals"    value="2"                     sub="Jarayonda"               icon="🤝" />
-        </div> */}
 
         {/* Section Header */}
         <div className="flex items-center justify-between mb-8">
