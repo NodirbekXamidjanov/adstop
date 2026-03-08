@@ -22,6 +22,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": false,
 
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
      "baseUrl": ".",
     "paths": {
       "@/*": [
