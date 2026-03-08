@@ -14,6 +14,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    //
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": false,
@@ -21,10 +25,6 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": false,
-
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-
      "baseUrl": ".",
     "paths": {
       "@/*": [
